@@ -5,10 +5,10 @@
 ## Login   <prenat_h@epitech.eu>
 ##
 ## Started on  Wed Feb 25 21:41:59 2015 Hugo Prenat
-## Last update Wed Feb 25 21:42:30 2015 Hugo Prenat
+## Last update Sun Mar  1 06:42:48 2015 Johan Paasche
 ##
 
-SRC		=
+SRC		=	test.c
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -22,7 +22,7 @@ DEBUG		=	yes
 
 INCLUDE 	=	includes/
 
-CFLAGS		=	-W -Wall -Wextra -Werror -I $(INCLUDE)
+CFLAGS		=	-W -Wall -Wextra -Werror -I $(INCLUDE) -pthread 
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
