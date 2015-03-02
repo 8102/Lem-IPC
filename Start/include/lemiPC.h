@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Mon Mar  2 01:22:40 2015 Johan Paasche
+** Last update Mon Mar  2 02:29:12 2015 Johan Paasche
 */
 
 #ifndef		LEMIPC_H_
@@ -55,7 +55,7 @@ typedef		char		t_bool;
 ** map[POS(4, 5)] = map[5 * 42 + 4];
 */
 # define	X(x)		((x) % SIDE_SIZE)
-# define	Y(x)		((x) * SIDE_SIZE)
+# define	Y(x)		(((x) % SIDE_SIZE) * SIDE_SIZE)
 # define	POS(x, y)	((X(x)) + (Y(y)))
 
 /*

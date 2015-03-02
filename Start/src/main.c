@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Mon Mar  2 01:45:49 2015 Johan Paasche
+** Last update Mon Mar  2 02:38:56 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -54,9 +54,9 @@ int		main(UNUSED int ac, UNUSED char **av)
       map = shmat(shm_id, NULL, SHM_R | SHM_W);
       int	i = 0;
       if (map_display_init(&display_map) == FALSE)
-	return (-1);
+      	return (-1);
       color_map(&display_map, (char *)map);
-      sleep(5);
+      /* sleep(5); */
       printf(">\n");
       while (i < MAP_SIZE)
   	{
@@ -68,6 +68,8 @@ int		main(UNUSED int ac, UNUSED char **av)
   	}
       /* printf("%s\n", (char *)map); */
       shmctl(shm_id, IPC_RMID, NULL);
+      SDL_FreeSurface(display_map.screen);
+      SDL_Quit();
     }
   return (0);
 }
