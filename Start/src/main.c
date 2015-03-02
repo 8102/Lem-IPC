@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Mon Mar  2 02:38:56 2015 Johan Paasche
+** Last update Mon Mar  2 12:34:40 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -56,7 +56,7 @@ int		main(UNUSED int ac, UNUSED char **av)
       if (map_display_init(&display_map) == FALSE)
       	return (-1);
       color_map(&display_map, (char *)map);
-      /* sleep(5); */
+      sleep(5);
       printf(">\n");
       while (i < MAP_SIZE)
   	{
