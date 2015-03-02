@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Sun Mar  1 22:01:01 2015 Johan Paasche
-## Last update Sun Mar  1 22:16:24 2015 Johan Paasche
+## Last update Mon Mar  2 01:16:10 2015 Johan Paasche
 ##
 
 NAME		=	lemipc
@@ -29,7 +29,7 @@ endif
 
 
 SRC		=	main.c		\
-
+			drawing.c	\
 
 BIN_D		=	bin
 

@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sun Mar  1 23:33:39 2015 Johan Paasche
+** Last update Mon Mar  2 01:22:40 2015 Johan Paasche
 */
 
 #ifndef		LEMIPC_H_
@@ -54,8 +54,8 @@ typedef		char		t_bool;
 /*
 ** map[POS(4, 5)] = map[5 * 42 + 4];
 */
-# define	X(x)		((x) % (SIDE_SIZE));
-# define	Y(x)		(((x) * SIDE_SIZE) %  SIDE_SIZE)
+# define	X(x)		((x) % SIDE_SIZE)
+# define	Y(x)		((x) * SIDE_SIZE)
 # define	POS(x, y)	((X(x)) + (Y(y)))
 
 /*
@@ -71,4 +71,6 @@ typedef	struct	s_map
   pthread_t	event;
 }		t_map;
 
+void		draw_cell(t_map *, int, int, unsigned int);
+void		color_map(t_map *, char *);
 #endif		/* !LEMIPC_H_ */
