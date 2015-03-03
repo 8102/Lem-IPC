@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Tue Mar  3 17:33:29 2015 Johan Paasche
+** Last update Tue Mar  3 17:52:48 2015 Hugo Prenat
 */
 
 #include	"lemiPC.h"
@@ -31,8 +31,11 @@ int		main(UNUSED int ac, UNUSED char **av)
   t_map		screen;
   int		shm_id;
   void		*map;
+  char		cwd[1024];
 
-  key = ftok(av[1], 0);
+  if (getcwd(cwd, sizeof(cwd)) == NULL)
+    return (-1);
+  key = ftok(cwd, 0);
   shm_id = shmget(key, MAP_SIZE, SHM_R | SHM_W);
   if (shm_id == FALSE)
     return (printf("Please init the map before launching graphic client.\n"));

@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Tue Mar  3 17:41:09 2015 Johan Paasche
+** Last update Tue Mar  3 17:48:47 2015 Hugo Prenat
 */
 
 #include	"lemiPC.h"
@@ -15,8 +15,11 @@ int		main(UNUSED int ac, UNUSED char **av)
   key_t		k;
   int		shm_id;
   void		*map;
+  char		cwd[1024];
 
-  k = ftok(av[1], 0);
+  if (getcwd(cwd, sizeof(cwd)) == NULL)
+    return (-1);
+  k = ftok(cwd, 0);
   shm_id = shmget(k, MAP_SIZE, SHM_R | SHM_W);
   if (shm_id == FALSE)
     {
