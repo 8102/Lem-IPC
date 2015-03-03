@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Mon Mar  2 18:47:18 2015 Johan Paasche
+** Last update Tue Mar  3 17:34:49 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -23,7 +23,7 @@ void		color_map(t_map *screen, UNUSED char *map)
 {
   int		x;
   int		y;
-  /* unsigned int 	color[5] = {0x000000, 0x2563598, 0x565499 ,0x897654, 0x654689}; */
+  unsigned int 	color[5] = {0x22222222, 0x2563598, 0x565499 ,0x897654, 0x654689};
 
   y = 0;
   while (y < SIDE_SIZE)
@@ -31,9 +31,8 @@ void		color_map(t_map *screen, UNUSED char *map)
       x = -1;
       while (++x < SIDE_SIZE)
 	{
-	  /* printf("[%d]", (int)map[POS(x, y)]); */
-	  /* draw_cell(screen, x, y, color[(int)(map[POS(x, y)]) % 5]); */
-	  draw_cell(screen, x, y, 0x22222222);
+	  draw_cell(screen, x, y, color[(int)(map[POS(x, y)]) % 5]);
+	  /* draw_cell(screen, x, y, 0x22222222); */
 	}
       ++y;
     }
