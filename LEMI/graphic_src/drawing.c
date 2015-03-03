@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Mon Mar  2 16:30:50 2015 Johan Paasche
+** Last update Mon Mar  2 18:47:18 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -19,7 +19,7 @@ void		draw_cell(t_map *screen, int x, int y, unsigned int color)
   SDL_FillRect(screen->screen, &screen->position, color);
 }
 
-void		color_map(t_map *screen, char *map)
+void		color_map(t_map *screen, UNUSED char *map)
 {
   int		x;
   int		y;
@@ -31,10 +31,10 @@ void		color_map(t_map *screen, char *map)
       x = -1;
       while (++x < SIDE_SIZE)
 	{
-	  printf("[%d]", (int)map[POS(x, y)]);
+	  /* printf("[%d]", (int)map[POS(x, y)]); */
 	  /* draw_cell(screen, x, y, color[(int)(map[POS(x, y)]) % 5]); */
+	  draw_cell(screen, x, y, 0x22222222);
 	}
-      printf("\n");
       ++y;
     }
   SDL_Flip(screen->screen);
