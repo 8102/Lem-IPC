@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Tue Mar  3 17:34:49 2015 Johan Paasche
+** Last update Tue Mar  3 17:39:34 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -23,7 +23,7 @@ void		color_map(t_map *screen, UNUSED char *map)
 {
   int		x;
   int		y;
-  unsigned int 	color[5] = {0x22222222, 0x2563598, 0x565499 ,0x897654, 0x654689};
+  unsigned int 	color[5] = {0x22222222, 0x00FF21B1, 0x003cff19, 0X00FFFF47, 0x00FF0505};
 
   y = 0;
   while (y < SIDE_SIZE)
