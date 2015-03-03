@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Mon Mar  2 16:30:47 2015 Johan Paasche
+** Last update Tue Mar  3 22:32:02 2015 Johan Paasche
 */
 
 #ifndef		LEMIPC_H_
@@ -20,8 +20,8 @@
 # include	<sys/ipc.h>
 # include	<pthread.h>
 
-# include	<SDL/SDL.h>
-# include	<SDL/SDL_ttf.h>
+# include	"player.h"
+# include	"gui.h"
 
 /*
 ** Just to avoid some warnings
@@ -50,7 +50,8 @@ typedef		char		t_bool;
 */
 
 # define	ABS(x)		((x) < 0 ? (-1 * (x)) : (x))
-# define	SAFE(x)		((ABS(x)) % (MAP_SIZE))
+# define	SAFE(x)		((x) % (MAP_SIZE))
+/* # define	SAFE(x)		((ABS(x)) % (MAP_SIZE)) */
 
 /*
 ** map[POS(4, 5)] = map[5 * 42 + 4];
@@ -64,14 +65,4 @@ typedef		char		t_bool;
 */
 # define	CELL_SIZE	(20)
 
-typedef	struct	s_map
-{
-  SDL_Surface	*screen;
-  SDL_Rect	position;
-  SDL_Color	color;
-  pthread_t	event;
-}		t_map;
-
-void		draw_cell(t_map *, int, int, unsigned int);
-void		color_map(t_map *, char *);
 #endif		/* !LEMIPC_H_ */

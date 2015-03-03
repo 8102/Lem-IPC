@@ -5,13 +5,58 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Tue Mar  3 17:52:48 2015 Hugo Prenat
+** Last update Tue Mar  3 22:48:05 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
 
-t_bool		map_display_init(t_map *screen)
+void		*catch_event(void *arg)
 {
+  t_gui		*screen;
+  SDL_Event	event;
+
+  screen = (t_gui *)arg;
+  while (screen->off == FALSE)
+    {
+      SDL_PollEvent(&event);
+      if (event.key.keysym.sym == SDLK_ESCAPE)
+	{
+	  screen->off = TRUE;
+	  pthread_exit(0);
+	}
+      if (event.type == SDL_MOUSEBUTTONDOWN)
+	{
+	  if (event.button.x < CELL_SIZE * SIDE_SIZE && event.button.y < CELL_SIZE * SIDE_SIZE)
+	    screen->map[POS(event.button.x / CELL_SIZE, event.button.y / CELL_SIZE)] = 2;
+	}
+    }
+  return (NULL);
+}
+
+t_bool		check_end(char *map)
+{
+  int		i;
+  int		nb_teams;
+
+  i = 0;
+  nb_teams = 0;
+  while (i < MAP_SIZE)
+    {
+      if (map[i] != 0 && map[i] != 'X')
+	{
+	  if (nb_teams == 0)
+	    nb_teams = map[i];
+	  else
+	    return (FALSE);
+	}
+      ++i;
+    }
+  return (TRUE);
+}
+
+t_bool		map_display_init(t_gui *screen)
+{
+  screen->off = FALSE;
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (FALSE);
   screen->screen = SDL_SetVideoMode(SIDE_SIZE * CELL_SIZE + 200, SIDE_SIZE * CELL_SIZE + SIDE_SIZE, 32, SDL_HWSURFACE);
@@ -28,9 +73,8 @@ t_bool		map_display_init(t_map *screen)
 int		main(UNUSED int ac, UNUSED char **av)
 {
   key_t		key;
-  t_map		screen;
+  t_gui		screen;
   int		shm_id;
-  void		*map;
   char		cwd[1024];
 
   if (getcwd(cwd, sizeof(cwd)) == NULL)
@@ -41,8 +85,14 @@ int		main(UNUSED int ac, UNUSED char **av)
     return (printf("Please init the map before launching graphic client.\n"));
   if (map_display_init(&screen) == FALSE)
     return (printf("A problem has occured while initing Graphic client.\n"));
-  map = shmat(shm_id, NULL, SHM_R | SHM_W);
-  color_map(&screen, (char *)map);
-  sleep(5);
+  screen.map = shmat(shm_id, NULL, SHM_R | SHM_W);
+  color_map(&screen, screen.map);
+  pthread_create(&screen.event_thread, NULL, catch_event, &screen);
+  while (screen.off == FALSE)
+    {
+      color_map(&screen, screen.map);
+    }
+  pthread_join(screen.event_thread, NULL);
+  SDL_Quit();
   return (0);
 }

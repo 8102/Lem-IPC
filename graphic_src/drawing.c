@@ -5,12 +5,12 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Tue Mar  3 17:39:34 2015 Johan Paasche
+** Last update Tue Mar  3 20:37:54 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
 
-void		draw_cell(t_map *screen, int x, int y, unsigned int color)
+void		draw_cell(t_gui *screen, int x, int y, unsigned int color)
 {
   screen->position.x = x * CELL_SIZE;
   screen->position.y = y * CELL_SIZE;
@@ -19,7 +19,7 @@ void		draw_cell(t_map *screen, int x, int y, unsigned int color)
   SDL_FillRect(screen->screen, &screen->position, color);
 }
 
-void		color_map(t_map *screen, UNUSED char *map)
+void		color_map(t_gui *screen, UNUSED char *map)
 {
   int		x;
   int		y;
