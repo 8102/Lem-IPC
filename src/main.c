@@ -5,10 +5,69 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Wed Mar  4 14:45:54 2015 Johan Paasche
+** Last update Wed Mar  4 19:25:34 2015 Hugo Prenat
 */
 
 #include	"lemiPC.h"
+
+int	is_alive(t_player *player, char *map)
+{
+  char	other[9];
+  int	i;
+  int	j;
+  int	dead;
+
+  i = 0;
+  j = 0;
+  dead = 0;
+  memset(other, 9, 0);
+  if (map[POS(player->x - 1, player->y - 1)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x - 1, player->y - 1)];
+  if (map[POS(player->x, player->y - 1)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x, player->y - 1)];
+  if (map[POS(player->x + 1, player->y - 1)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x + 1, player->y - 1)];
+  if (map[POS(player->x - 1, player->y)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x - 1, player->y)];
+  if (map[POS(player->x + 1, player->y)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x + 1, player->y)];
+  if (map[POS(player->x - 1, player->y + 1)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x, player->y + 1)];
+  if (map[POS(player->x, player->y + 1)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x, player->y + 1)];
+  if (map[POS(player->x + 1, player->y + 1)] != map[POS(player->x, player->y)])
+    other[0] = map[POS(player->x + 1, player->y + 1)];
+  while (other[i])
+    {
+      while (other[j])
+	{
+	  if (j != i)
+	    if (other[i] == other[j] && other[i] != 0 && other[j] != 0)
+	      dead++;
+	  j++;
+	}
+      i++;
+    }
+  if (dead > 2)
+    return (-1);
+  return (0);
+}
+
+void	      update_player_pos(int x, int y, t_player *player, char *map)
+{
+  map[POS(player->x, player->y)] = 0;
+  player->x = x;
+  player->y = y;
+  map[POS(player->x, player->y)] = player->team;
+}
+
+void	move(t_player *player, char *map)
+{
+  while (is_alive(player, map) == 0)
+    {
+      update_player_pos(player->x + 1, player->y + 1, player, map);
+    }
+}
 
 int	init_player(t_player *player, char *map, int team)
 {
@@ -59,7 +118,7 @@ int		main(UNUSED int ac, UNUSED char **av)
       printf("Map created and initialized !\n");
       if (init_player(&player, map, atoi(av[1])) == -1)
 	return (-1);
-      /* move(player, map); */
+      move(&player, map);
     }
   else if (av[1] && strcmp(av[1], "-d") == 0)
     {
@@ -73,7 +132,7 @@ int		main(UNUSED int ac, UNUSED char **av)
       printf("Map updated!\n");
       if (init_player(&player, map, atoi(av[1])) == -1)
 	return (-1);
-      /* move(player, map); */
+      move(&player, map);
     }
   return (0);
 }
