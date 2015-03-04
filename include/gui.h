@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Mar  3 20:34:55 2015 Johan Paasche
-** Last update Tue Mar  3 22:05:12 2015 Johan Paasche
+** Last update Wed Mar  4 13:38:20 2015 Johan Paasche
 */
 
 #ifndef		GUI_H_
@@ -26,5 +26,7 @@ typedef	struct	s_gui
 
 void		draw_cell(t_gui *, int, int, unsigned int);
 void		color_map(t_gui *, char *);
+void		shaded_grid(t_gui *, int);
+void		lighting_circle(t_gui *, int);
 
 #endif		/* !GUI_H_ */

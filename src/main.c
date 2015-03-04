@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Wed Mar  4 14:27:17 2015 Hugo Prenat
+** Last update Wed Mar  4 14:45:54 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -59,7 +59,7 @@ int		main(UNUSED int ac, UNUSED char **av)
       printf("Map created and initialized !\n");
       if (init_player(&player, map, atoi(av[1])) == -1)
 	return (-1);
-      move(player, map);
+      /* move(player, map); */
     }
   else if (av[1] && strcmp(av[1], "-d") == 0)
     {
@@ -73,7 +73,7 @@ int		main(UNUSED int ac, UNUSED char **av)
       printf("Map updated!\n");
       if (init_player(&player, map, atoi(av[1])) == -1)
 	return (-1);
-      move(player, map);
+      /* move(player, map); */
     }
   return (0);
 }

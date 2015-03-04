@@ -5,10 +5,49 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Tue Mar  3 20:37:54 2015 Johan Paasche
+** Last update Wed Mar  4 14:51:32 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
+
+void		lighting_circle(t_gui *screen, int i)
+{
+  SDL_Rect	pos;
+  SDL_Rect	po;
+  unsigned int	color;
+
+  color =  0x00DD8228;
+  pos.x = (SIDE_SIZE * CELL_SIZE) / 2 - i % (SIDE_SIZE * CELL_SIZE / 2);
+  pos.h = (pos.x + 2 * (i % (SIDE_SIZE * CELL_SIZE)));
+  pos.y = (SIDE_SIZE * CELL_SIZE) / 2 - i % (SIDE_SIZE * CELL_SIZE / 2);
+  pos.w = (pos.x + 2 * (i % (SIDE_SIZE * CELL_SIZE)));
+  SDL_FillRect(screen->screen, &pos, color);
+  po.x = (SIDE_SIZE * CELL_SIZE) / 2 - i % (SIDE_SIZE * CELL_SIZE / 2) + 20;
+  po.h = (pos.x + 2 * (i % (SIDE_SIZE * CELL_SIZE))) - 20;
+  po.y = (SIDE_SIZE * CELL_SIZE) / 2 - i % (SIDE_SIZE * CELL_SIZE / 2) - 20;
+  po.w = (pos.x + 2 * (i % (SIDE_SIZE * CELL_SIZE))) - 20;
+  SDL_FillRect(screen->screen, &po, color);
+}
+
+void		shaded_grid(t_gui *screen, int y)
+{
+  SDL_Rect	pos;
+  int		i;
+  unsigned int	color;
+
+  i = 0;
+  color =  0x00DD8228;
+  screen->position.x = 0;
+  screen->position.y = 0;
+  screen->position.h = SIDE_SIZE * CELL_SIZE;
+  screen->position.w = SIDE_SIZE * CELL_SIZE;
+  SDL_FillRect(screen->screen, &screen->position, 0x00AA5005);
+  pos.x = 0;
+  pos.y = y + i;
+  pos.h = 100;
+  pos.w = SIDE_SIZE * CELL_SIZE;
+  SDL_FillRect(screen->screen, &pos, color);
+}
 
 void		draw_cell(t_gui *screen, int x, int y, unsigned int color)
 {

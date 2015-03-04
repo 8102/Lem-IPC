@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Tue Mar  3 22:48:05 2015 Johan Paasche
+** Last update Wed Mar  4 14:47:51 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -76,7 +76,9 @@ int		main(UNUSED int ac, UNUSED char **av)
   t_gui		screen;
   int		shm_id;
   char		cwd[1024];
+  int		i = 0;
 
+  srand(time(NULL));
   if (getcwd(cwd, sizeof(cwd)) == NULL)
     return (-1);
   key = ftok(cwd, 0);
@@ -90,7 +92,11 @@ int		main(UNUSED int ac, UNUSED char **av)
   pthread_create(&screen.event_thread, NULL, catch_event, &screen);
   while (screen.off == FALSE)
     {
+      /* lighting_circle(&screen, i); */
+      shaded_grid(&screen, i % (CELL_SIZE * SIDE_SIZE - 100));
       color_map(&screen, screen.map);
+      usleep(10000);
+      ++i;
     }
   pthread_join(screen.event_thread, NULL);
   SDL_Quit();
