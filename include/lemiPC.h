@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Tue Mar  3 22:32:02 2015 Johan Paasche
+** Last update Wed Mar  4 14:16:43 2015 Hugo Prenat
 */
 
 #ifndef		LEMIPC_H_
@@ -14,6 +14,7 @@
 # include	<stdio.h>
 # include	<stdlib.h>
 # include	<unistd.h>
+# include	<linux/limits.h>
 
 # include	<sys/types.h>
 # include	<sys/shm.h>
