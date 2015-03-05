@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Sun Mar  1 22:01:01 2015 Johan Paasche
-## Last update Thu Mar  5 19:04:00 2015 Hugo Prenat
+## Last update Thu Mar  5 20:05:17 2015 Johan Paasche
 ##
 
 CC		=	gcc
@@ -15,7 +15,7 @@ RM		=	rm -f
 LINK		=	ln -fs
 
 
-DEBUG		=	no
+DEBUG		=	yes
 
 CFLAGS		=	-W -Wall -Wextra -ansi -pedantic  -I$(INCLUDE_D) -lpthread $(SDL_LIB) -D_GNU_SOURCE
 

@@ -5,13 +5,19 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:52:18 2015 Hugo Prenat
-** Last update Thu Mar  5 18:54:25 2015 Hugo Prenat
+** Last update Thu Mar  5 20:03:14 2015 Johan Paasche
 */
 
 #include "lemiPC.h"
 
 void	check_other(t_player *player, char *map, int *other)
 {
+  /* int	x; */
+  /* int	y; */
+
+  /* x = (player->x > 0 ? player->x - 1 : player->x); */
+  /* y = (player->y > 0 ? player->y - 1 : player->y); */
+
   if (map[POS(player->x - 1, player->y - 1)] != map[POS(player->x, player->y)])
     other[0] = map[POS(player->x - 1, player->y - 1)];
   if (map[POS(player->x, player->y - 1)] != map[POS(player->x, player->y)])

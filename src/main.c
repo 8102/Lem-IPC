@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Thu Mar  5 19:48:04 2015 Hugo Prenat
+** Last update Thu Mar  5 20:24:27 2015 Johan Paasche
 */
 
 #include "lemiPC.h"
@@ -38,6 +38,7 @@ int	init_player(t_player *player, char *map, int team)
       srand(time(NULL));
       player->x = rand() % SIDE_SIZE;
       player->y = rand() % SIDE_SIZE;
+      printf("x = [%d] y = [%d] POS = [%d] \n", player->x, player->y, POS(player->x, player->y)/*, map[POS(player->x, player->y)]*/);
       if (map[POS(player->x, player->y)] == 0)
 	{
 	  map[POS(player->x, player->y)] = player->team;
@@ -47,14 +48,16 @@ int	init_player(t_player *player, char *map, int team)
   return (0);
 }
 
-void	init_ipc(t_player *player, char *map)
+char	*init_ipc(t_player *player)
 {
+  char *map;
+
   player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W);
   player->sem_id = semget(player->k, 1, IPC_CREAT | SHM_R | SHM_W);
   map = shmat(player->shm_id, NULL, SHM_R | SHM_W);
   semctl(player->sem_id, 0, SETVAL, 1);
-  memset(map, MAP_SIZE, 0);
-  printf("Map created and initialized !\n");
+  memset(map, 0, MAP_SIZE);
+  return (map);
 }
 
 int	get_token(t_player *player)
@@ -74,23 +77,25 @@ int		main(UNUSED int ac, UNUSED char **av)
   t_player	player;
   char		*map;
 
-  map = NULL;
   if (ac < 2)
     {
       fprintf(stderr, "Usage: %s team_id\n", av[0]);
       return (-1);
     }
+  map = NULL;
   if (get_token(&player) == -1)
     return (-1);
   if (av[1] && strcmp(av[1], "-d") == 0)
     delete_ipc(&player);
   else if (player.shm_id == FALSE)
-    init_ipc(&player, map);
+    {
+      map = init_ipc(&player);
+    }
   else
     {
       map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
-      printf("Map updated!\n");
-    }
+     }
+  printf("%d", map == NULL);
   if (init_player(&player, map, atoi(av[1])) == -1)
     return (-1);
   move(&player, map);
