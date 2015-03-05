@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Sun Mar  1 22:01:01 2015 Johan Paasche
-## Last update Tue Mar  3 17:25:03 2015 Johan Paasche
+## Last update Thu Mar  5 19:04:00 2015 Hugo Prenat
 ##
 
 CC		=	gcc
@@ -36,6 +36,9 @@ SDL_LIB		=	-lSDL -lSDLmain -ldl -lSDL_image -lSDL_ttf -lSDL_mixer
 NAME		=	lemipc
 
 SRC		=	main.c		\
+			is_alive.c	\
+			move.c		\
+			status_sem.c
 
 SRC_D		=	src
 

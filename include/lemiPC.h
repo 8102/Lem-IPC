@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Wed Mar  4 14:16:43 2015 Hugo Prenat
+** Last update Thu Mar  5 19:52:30 2015 Hugo Prenat
 */
 
 #ifndef		LEMIPC_H_
@@ -19,6 +19,7 @@
 # include	<sys/types.h>
 # include	<sys/shm.h>
 # include	<sys/ipc.h>
+# include	<sys/sem.h>
 # include	<pthread.h>
 
 # include	"player.h"
@@ -65,5 +66,23 @@ typedef		char		t_bool;
 ** size, in pxl, of a cell in the map
 */
 # define	CELL_SIZE	(20)
+
+/*
+** Change status of semaphore
+*/
+
+void		change_state_sem(t_player *, int);
+
+/*
+** Move player
+*/
+
+void		move(t_player *, char *);
+
+/*
+** Check if program is alive
+*/
+
+int		is_alive(t_player *, char *);
 
 #endif		/* !LEMIPC_H_ */

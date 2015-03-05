@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Mar  3 18:05:40 2015 Johan Paasche
-** Last update Wed Mar  4 12:20:05 2015 Hugo Prenat
+** Last update Thu Mar  5 15:35:56 2015 Hugo Prenat
 */
 
 #ifndef		PLAYER_H_
@@ -21,6 +21,7 @@ typedef	struct		s_player
   unsigned int		color;
   key_t			k;
   int			shm_id;
+  int			sem_id;
   struct s_player	*leader;
 }			t_player;
 

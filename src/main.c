@@ -1,72 +1,24 @@
 /*
-** main.c for Test in /home/paasch_j/work/PSU/PSU_2014_lemipc/Start
+** main.c for lemipc in /home/paasch_j/work/PSU/PSU_2014_lemipc/Start
 **
 ** Made by Johan Paasche
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Wed Mar  4 19:25:34 2015 Hugo Prenat
+** Last update Thu Mar  5 19:48:04 2015 Hugo Prenat
 */
 
-#include	"lemiPC.h"
+#include "lemiPC.h"
 
-int	is_alive(t_player *player, char *map)
+void	delete_ipc(t_player *player)
 {
-  char	other[9];
-  int	i;
-  int	j;
-  int	dead;
-
-  i = 0;
-  j = 0;
-  dead = 0;
-  memset(other, 9, 0);
-  if (map[POS(player->x - 1, player->y - 1)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x - 1, player->y - 1)];
-  if (map[POS(player->x, player->y - 1)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x, player->y - 1)];
-  if (map[POS(player->x + 1, player->y - 1)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x + 1, player->y - 1)];
-  if (map[POS(player->x - 1, player->y)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x - 1, player->y)];
-  if (map[POS(player->x + 1, player->y)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x + 1, player->y)];
-  if (map[POS(player->x - 1, player->y + 1)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x, player->y + 1)];
-  if (map[POS(player->x, player->y + 1)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x, player->y + 1)];
-  if (map[POS(player->x + 1, player->y + 1)] != map[POS(player->x, player->y)])
-    other[0] = map[POS(player->x + 1, player->y + 1)];
-  while (other[i])
+  if (player->shm_id != -1)
     {
-      while (other[j])
-	{
-	  if (j != i)
-	    if (other[i] == other[j] && other[i] != 0 && other[j] != 0)
-	      dead++;
-	  j++;
-	}
-      i++;
+      printf("Map deleted !\n");
+      shmctl(player->shm_id, IPC_RMID, NULL);
     }
-  if (dead > 2)
-    return (-1);
-  return (0);
-}
-
-void	      update_player_pos(int x, int y, t_player *player, char *map)
-{
-  map[POS(player->x, player->y)] = 0;
-  player->x = x;
-  player->y = y;
-  map[POS(player->x, player->y)] = player->team;
-}
-
-void	move(t_player *player, char *map)
-{
-  while (is_alive(player, map) == 0)
-    {
-      update_player_pos(player->x + 1, player->y + 1, player, map);
-    }
+  else
+    printf("Can't delete anything\n");
 }
 
 int	init_player(t_player *player, char *map, int team)
@@ -95,44 +47,52 @@ int	init_player(t_player *player, char *map, int team)
   return (0);
 }
 
+void	init_ipc(t_player *player, char *map)
+{
+  player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W);
+  player->sem_id = semget(player->k, 1, IPC_CREAT | SHM_R | SHM_W);
+  map = shmat(player->shm_id, NULL, SHM_R | SHM_W);
+  semctl(player->sem_id, 0, SETVAL, 1);
+  memset(map, MAP_SIZE, 0);
+  printf("Map created and initialized !\n");
+}
+
+int	get_token(t_player *player)
+{
+  char		cwd[PATH_MAX];
+
+  if (getcwd(cwd, PATH_MAX) == NULL)
+    return (-1);
+  player->k = ftok(cwd, 0);
+  player->shm_id = shmget(player->k, MAP_SIZE, SHM_R | SHM_W);
+  player->sem_id = semget(player->k, 1, SHM_R | SHM_W);
+  return (0);
+}
+
 int		main(UNUSED int ac, UNUSED char **av)
 {
   t_player	player;
   char		*map;
-  char		cwd[PATH_MAX];
 
+  map = NULL;
   if (ac < 2)
     {
       fprintf(stderr, "Usage: %s team_id\n", av[0]);
       return (-1);
     }
-  if (getcwd(cwd, PATH_MAX) == NULL)
+  if (get_token(&player) == -1)
     return (-1);
-  player.k = ftok(cwd, 0);
-  player.shm_id = shmget(player.k, MAP_SIZE, SHM_R | SHM_W);
-  if (player.shm_id == FALSE)
-    {
-      player.shm_id = shmget(player.k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W);
-      map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
-      memset(map, MAP_SIZE, 0);
-      printf("Map created and initialized !\n");
-      if (init_player(&player, map, atoi(av[1])) == -1)
-	return (-1);
-      move(&player, map);
-    }
-  else if (av[1] && strcmp(av[1], "-d") == 0)
-    {
-      map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
-      printf("Map deleted !\n");
-      shmctl(player.shm_id, IPC_RMID, NULL);
-    }
+  if (av[1] && strcmp(av[1], "-d") == 0)
+    delete_ipc(&player);
+  else if (player.shm_id == FALSE)
+    init_ipc(&player, map);
   else
     {
       map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
       printf("Map updated!\n");
-      if (init_player(&player, map, atoi(av[1])) == -1)
-	return (-1);
-      move(&player, map);
     }
+  if (init_player(&player, map, atoi(av[1])) == -1)
+    return (-1);
+  move(&player, map);
   return (0);
 }
