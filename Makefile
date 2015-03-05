@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Sun Mar  1 22:01:01 2015 Johan Paasche
-## Last update Thu Mar  5 20:05:17 2015 Johan Paasche
+## Last update Thu Mar  5 22:05:34 2015 Johan Paasche
 ##
 
 CC		=	gcc
@@ -87,6 +87,8 @@ endif
 FIRST		:=	$(shell test -d $(OBJ_D) || mkdir $(OBJ_D))	\
 			$(shell test -d $(BIN_D) || mkdir $(BIN_D))
 
+all		:	$(NAME) $(GRAPHIC_NAME)
+
 $(NAME)		:	$(PRO)
 		 	@$(LINK) $(PRO) $(NAME)
 
@@ -106,8 +108,6 @@ $(OBJ_D)/%.o	:	$(GRAPHIC_SRC_D)/%.c
 $(GRAPHIC_PRO)	:	$(GRAPHIC_OBJS)
 			@echo -e "\033[34m" "Compiling GUI" "\033[0m"
 			$(CC) $(GRAPHIC_CFLAGS) $(GRAPHIC_OBJS) -o $(GRAPHIC_PRO)
-
-all		:	$(NAME) $(GRAPHIC_NAME)
 
 clean		:
 		  	$(RM)		$(OBJS) $(GRAPHIC_OBJS)

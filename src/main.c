@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Thu Mar  5 20:24:27 2015 Johan Paasche
+** Last update Thu Mar  5 21:53:43 2015 Johan Paasche
 */
 
 #include "lemiPC.h"
@@ -38,7 +38,7 @@ int	init_player(t_player *player, char *map, int team)
       srand(time(NULL));
       player->x = rand() % SIDE_SIZE;
       player->y = rand() % SIDE_SIZE;
-      printf("x = [%d] y = [%d] POS = [%d] \n", player->x, player->y, POS(player->x, player->y)/*, map[POS(player->x, player->y)]*/);
+      /* printf("x = [%d] y = [%d] POS = [%d] \n", player->x, player->y, POS(player->x, player->y)/\*, map[POS(player->x, player->y)]*\/); */
       if (map[POS(player->x, player->y)] == 0)
 	{
 	  map[POS(player->x, player->y)] = player->team;
@@ -88,14 +88,9 @@ int		main(UNUSED int ac, UNUSED char **av)
   if (av[1] && strcmp(av[1], "-d") == 0)
     delete_ipc(&player);
   else if (player.shm_id == FALSE)
-    {
-      map = init_ipc(&player);
-    }
+    map = init_ipc(&player);
   else
-    {
-      map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
-     }
-  printf("%d", map == NULL);
+    map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
   if (init_player(&player, map, atoi(av[1])) == -1)
     return (-1);
   move(&player, map);
