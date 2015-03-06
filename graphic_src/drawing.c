@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Wed Mar  4 14:51:32 2015 Johan Paasche
+** Last update Fri Mar  6 16:21:09 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -70,8 +70,8 @@ void		color_map(t_gui *screen, UNUSED char *map)
       x = -1;
       while (++x < SIDE_SIZE)
 	{
-	  draw_cell(screen, x, y, color[(int)(map[POS(x, y)]) % 5]);
-	  /* draw_cell(screen, x, y, 0x22222222); */
+	  /* draw_cell(screen, x, y, color[(int)(map[POS(x, y)]) % 5]); */
+	  draw_cell(screen, x, y, screen->colour_array[(int)(map[POS(x, y)])]);
 	}
       ++y;
     }

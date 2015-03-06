@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Wed Mar  4 14:47:51 2015 Johan Paasche
+** Last update Fri Mar  6 16:05:01 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -67,6 +67,7 @@ t_bool		map_display_init(t_gui *screen)
   SDL_FillRect(screen->screen, &screen->position, 0x00AA5005);
   SDL_Flip(screen->screen);
   SDL_WM_SetCaption("COLLABORATE OR PERISH !", NULL);
+  init_colour_array(screen);
   return (TRUE);
 }
 
