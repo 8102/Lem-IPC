@@ -5,7 +5,7 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:51:39 2015 Hugo Prenat
-** Last update Sat Mar  7 17:05:34 2015 Hugo Prenat
+** Last update Sat Mar  7 17:19:25 2015 Johan Paasche
 */
 
 #include "lemiPC.h"
@@ -22,7 +22,7 @@
 /*     player->y -= 1; */
 /* } */
 
-void	update_player_pos(int x, int y, t_player *player, char *map)
+void	update_player_pos(int x, int y, t_player *player, unsigned char *map)
 {
   int	mem_x;
   int	mem_y;
@@ -37,7 +37,7 @@ void	update_player_pos(int x, int y, t_player *player, char *map)
   map[POS(mem_x, mem_y)] = 0;
 }
 
-void	move(t_player *player, char *map)
+void	move(t_player *player, unsigned char *map)
 {
   while (is_alive(player, map) == 0)
     {

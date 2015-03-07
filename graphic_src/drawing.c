@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Sat Mar  7 14:07:12 2015 Johan Paasche
+** Last update Sat Mar  7 17:19:48 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -58,7 +58,7 @@ void		draw_cell(t_gui *screen, int x, int y, unsigned int color)
   SDL_FillRect(screen->screen, &screen->position, color);
 }
 
-void		color_map(t_gui *screen, UNUSED char *map)
+void		color_map(t_gui *screen, UNUSED unsigned char *map)
 {
   int		x;
   int		y;

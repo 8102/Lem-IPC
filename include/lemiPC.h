@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Thu Mar  5 19:52:30 2015 Hugo Prenat
+** Last update Sat Mar  7 17:20:54 2015 Johan Paasche
 */
 
 #ifndef		LEMIPC_H_
@@ -35,10 +35,10 @@
 ** I like it sometimes
 */
 
-typedef		char		t_bool;
+typedef		unsigned char		t_bool;
 
 # define	TRUE		(1)
-# define	FALSE		(-1)
+# define	FALSE		(0)
 
 /*
 ** Just to test
@@ -77,12 +77,12 @@ void		change_state_sem(t_player *, int);
 ** Move player
 */
 
-void		move(t_player *, char *);
+void		move(t_player *, unsigned char *);
 
 /*
 ** Check if program is alive
 */
 
-int		is_alive(t_player *, char *);
+int		is_alive(t_player *, unsigned char *);
 
 #endif		/* !LEMIPC_H_ */
