@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Fri Mar  6 16:05:14 2015 Johan Paasche
-** Last update Sat Mar  7 14:07:42 2015 Johan Paasche
+** Last update Sat Mar  7 18:07:11 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -22,7 +22,6 @@ void		init_colour_array(t_gui *screen)
   if ((fd = fopen(".colors", "r")) != NULL)
     correct_file = TRUE;
   i = 0;
-  printf("ok\n");
   while (i < 256)
     {
       if (correct_file == TRUE)
