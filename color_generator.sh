@@ -1,4 +1,4 @@
-o#!/bin/bash
+#!/bin/bash
 
 printf '0x22222222\n' > .colors
 for i in `seq 1 256`;

@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Fri Mar  6 16:05:14 2015 Johan Paasche
-** Last update Fri Mar  6 16:20:06 2015 Johan Paasche
+** Last update Sat Mar  7 14:07:42 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -36,4 +36,5 @@ void		init_colour_array(t_gui *screen)
 	screen->colour_array[i % 256] = rand();
       ++i;
     }
+  screen->colour_array[0] = 0x22222222;
 }
