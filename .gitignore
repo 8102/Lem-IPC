@@ -4,6 +4,6 @@
 
 a.out
 
-bin
+bin/
 
-obj
+obj/
