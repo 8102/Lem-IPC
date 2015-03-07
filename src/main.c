@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Sat Mar  7 17:20:33 2015 Johan Paasche
+** Last update Sat Mar  7 18:00:32 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -21,7 +21,7 @@ void	delete_ipc(t_player *player)
     printf("Can't delete anything\n");
 }
 
-int	init_player(t_player *player, unsigned char *map, int team)
+int		init_player(t_player *player, unsigned char *map, int team)
 {
   unsigned char	bool;
 
@@ -61,7 +61,7 @@ unsigned char	*init_ipc(t_player *player)
 
 int	get_token(t_player *player)
 {
-  char		cwd[PATH_MAX];
+  char	cwd[PATH_MAX];
 
   if (getcwd(cwd, PATH_MAX) == NULL)
     return (-1);
@@ -71,9 +71,9 @@ int	get_token(t_player *player)
   return (0);
 }
 
-int		main(UNUSED int ac, UNUSED char **av)
+int			main(int ac, char **av)
 {
-  t_player	player;
+  t_player		player;
   unsigned char		*map;
 
   if (ac < 2)
@@ -89,7 +89,7 @@ int		main(UNUSED int ac, UNUSED char **av)
       delete_ipc(&player);
       return (0);
     }
-  else if (player.shm_id == FALSE)
+  else if (player.shm_id == -1)
     map = init_ipc(&player);
   else
     map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
