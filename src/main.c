@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Thu Mar  5 21:53:43 2015 Johan Paasche
+** Last update Sat Mar  7 17:06:06 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -38,7 +38,6 @@ int	init_player(t_player *player, char *map, int team)
       srand(time(NULL));
       player->x = rand() % SIDE_SIZE;
       player->y = rand() % SIDE_SIZE;
-      /* printf("x = [%d] y = [%d] POS = [%d] \n", player->x, player->y, POS(player->x, player->y)/\*, map[POS(player->x, player->y)]*\/); */
       if (map[POS(player->x, player->y)] == 0)
 	{
 	  map[POS(player->x, player->y)] = player->team;
@@ -86,7 +85,10 @@ int		main(UNUSED int ac, UNUSED char **av)
   if (get_token(&player) == -1)
     return (-1);
   if (av[1] && strcmp(av[1], "-d") == 0)
-    delete_ipc(&player);
+    {
+      delete_ipc(&player);
+      return (0);
+    }
   else if (player.shm_id == FALSE)
     map = init_ipc(&player);
   else
