@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Sun Mar  8 19:38:42 2015 Johan Paasche
+** Last update Sun Mar  8 21:01:41 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -14,8 +14,9 @@ void	delete_ipc(t_player *player)
 {
   if (player->shm_id != -1)
     {
-      printf("Map deleted !\n");
       shmctl(player->shm_id, IPC_RMID, NULL);
+      semctl(player->sem_id, 0, IPC_RMID);
+      printf("Map deleted !\n");
     }
   else
     printf("Can't delete anything\n");
@@ -55,9 +56,11 @@ unsigned char	*init_ipc(t_player *player)
   /* unsigned char *map; */
   void		*map;
 
-  if ((player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W)) == ERROR)
+  if ((player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W))
+      == ERROR)
     printf("player-shm_id ERROR\n");
-  if ((player->sem_id = semget(player->k, 1, IPC_CREAT | SHM_R | SHM_W)) == ERROR)
+  if ((player->sem_id = semget(player->k, 1, IPC_CREAT | SHM_R | SHM_W))
+      == ERROR)
     printf("player-sem_id ERROR\n");
   if (shmat(player->shm_id, NULL, SHM_R | SHM_W) == (void*)ERROR)
     printf("SHMAT ERROR\n");
@@ -81,16 +84,17 @@ int	get_token(t_player *player)
   return (0);
 }
 
-int			main(int ac, char **av)
+int		main(int ac, char **av)
 {
-  t_player		player;
-  unsigned char		*map;
+  t_player	player;
+  unsigned char	*map;
 
   if (ac < 2)
     {
       fprintf(stderr, "Usage: %s team_id\n", av[0]);
       return (-1);
     }
+  signal(SIGINT, end_process);
   map = NULL;
   if (get_token(&player) == -1)
     return (-1);
@@ -106,10 +110,5 @@ int			main(int ac, char **av)
   if (init_player(&player, map, atoi(av[1])) == -1)
     return (-1);
   move(&player, map);
-  if (check_last(map) == TRUE)
-    {
-      printf("I'm the last !\n");
-      delete_ipc(&player);
-    }
   return (0);
 }

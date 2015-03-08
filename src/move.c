@@ -5,7 +5,7 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:51:39 2015 Hugo Prenat
-** Last update Sun Mar  8 19:36:08 2015 Johan Paasche
+** Last update Sun Mar  8 20:31:10 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -35,6 +35,7 @@ void		move(t_player *player, unsigned char *map)
 
   x = player->x;
   y = player->y;
+  player_struct(player);
   while (is_alive(player, map) == 0)
     {
       /* msg_id = msgget(player->k, SHM_R | SHM_W); */

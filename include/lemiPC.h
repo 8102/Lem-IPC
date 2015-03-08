@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sun Mar  8 19:38:17 2015 Johan Paasche
+** Last update Sun Mar  8 20:53:05 2015 Hugo Prenat
 */
 
 #ifndef		LEMIPC_H_
@@ -15,6 +15,7 @@
 # include	<stdlib.h>
 # include	<unistd.h>
 # include	<linux/limits.h>
+# include	<signal.h>
 
 # include	<sys/types.h>
 # include	<sys/shm.h>
@@ -108,5 +109,13 @@ int		check_map(unsigned char *);
 */
 
 t_bool		check_last(unsigned char *);
+
+/*
+** Catch signal
+*/
+
+void		end_process(int);
+t_player	*player_struct(t_player *);
+void		delete_ipc(t_player *);
 
 #endif		/* !LEMIPC_H_ */
