@@ -5,10 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Sun Mar  8 21:27:51 2015 Hugo Prenat
+** Last update Sun Mar  8 21:37:36 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 void	delete_ipc(t_player *player)
 {
@@ -53,6 +53,7 @@ unsigned char	*init_ipc(t_player *player)
 {
   void		*map;
 
+  map = NULL;
   if ((player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W))
       == ERROR)
     printf("player-shm_id ERROR\n");

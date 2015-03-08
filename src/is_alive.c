@@ -5,10 +5,10 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:52:18 2015 Hugo Prenat
-** Last update Sun Mar  8 17:23:35 2015 Hugo Prenat
+** Last update Sun Mar  8 21:35:12 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 int	check_around(unsigned char *map, t_player *player, int x, int y)
 {

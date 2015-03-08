@@ -5,10 +5,10 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Sun Mar  8 15:17:20 2015 Hugo Prenat
-** Last update Sun Mar  8 18:56:47 2015 Hugo Prenat
+** Last update Sun Mar  8 21:35:18 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 int	find_enemy(t_player *player, unsigned char *map)
 {

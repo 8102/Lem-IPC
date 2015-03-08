@@ -5,10 +5,10 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Sun Mar  8 21:19:58 2015 Hugo Prenat
-** Last update Sun Mar  8 21:31:12 2015 Hugo Prenat
+** Last update Sun Mar  8 21:34:51 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 int	get_team(char *str)
 {

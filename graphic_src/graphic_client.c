@@ -5,10 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Sun Mar  8 20:54:15 2015 Johan Paasche
+** Last update Sun Mar  8 21:36:44 2015 Hugo Prenat
 */
 
-#include	"lemiPC.h"
+#include	"lemipc.h"
 
 t_bool		check_end(char *map)
 {

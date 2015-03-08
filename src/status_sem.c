@@ -5,10 +5,10 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:59:29 2015 Hugo Prenat
-** Last update Thu Mar  5 18:59:46 2015 Hugo Prenat
+** Last update Sun Mar  8 21:35:25 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 void		change_state_sem(t_player *player, int state)
 {

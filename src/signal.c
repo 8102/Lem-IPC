@@ -5,10 +5,10 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Sun Mar  8 20:12:58 2015 Hugo Prenat
-** Last update Sun Mar  8 21:15:27 2015 Hugo Prenat
+** Last update Sun Mar  8 21:34:38 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 t_player		*player_struct(t_player *ptr)
 {

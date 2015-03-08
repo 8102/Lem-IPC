@@ -5,10 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Fri Mar  6 16:05:14 2015 Johan Paasche
-** Last update Sat Mar  7 18:07:11 2015 Johan Paasche
+** Last update Sun Mar  8 21:36:26 2015 Hugo Prenat
 */
 
-#include	"lemiPC.h"
+#include	"lemipc.h"
 #include	"gui.h"
 
 void		init_colour_array(t_gui *screen)

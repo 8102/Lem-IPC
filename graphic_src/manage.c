@@ -5,10 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  8 17:13:54 2015 Johan Paasche
-** Last update Sun Mar  8 20:52:48 2015 Johan Paasche
+** Last update Sun Mar  8 21:36:38 2015 Hugo Prenat
 */
 
-#include	"lemiPC.h"
+#include	"lemipc.h"
 
 void		fulfill_team_array(t_gui *screen, unsigned char *map)
 {

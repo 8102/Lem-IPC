@@ -5,13 +5,11 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Mar  3 18:05:40 2015 Johan Paasche
-** Last update Sun Mar  8 21:22:46 2015 Hugo Prenat
+** Last update Sun Mar  8 21:35:59 2015 Hugo Prenat
 */
 
 #ifndef		PLAYER_H_
 # define	PLAYER_H_
-
-# include	"lemiPC.h"
 
 typedef	struct		s_player
 {

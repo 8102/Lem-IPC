@@ -5,10 +5,10 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Sun Mar  8 16:13:51 2015 Hugo Prenat
-** Last update Sun Mar  8 19:38:07 2015 Johan Paasche
+** Last update Sun Mar  8 21:34:57 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 int	check_map(unsigned char *map)
 {

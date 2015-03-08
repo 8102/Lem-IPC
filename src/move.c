@@ -5,10 +5,10 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:51:39 2015 Hugo Prenat
-** Last update Sun Mar  8 21:14:41 2015 Hugo Prenat
+** Last update Sun Mar  8 21:35:05 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 void	update_player_pos(int x, int y, t_player *player, unsigned char *map)
 {

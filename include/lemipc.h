@@ -1,11 +1,11 @@
 /*
-** lemiPC.h for  in /home/paasch_j/work/PSU/PSU_2014_lemipc/Start
+** lemipc.h for  in /home/paasch_j/work/PSU/PSU_2014_lemipc/Start
 **
 ** Made by Johan Paasche
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sun Mar  8 21:25:52 2015 Hugo Prenat
+** Last update Sun Mar  8 21:34:12 2015 Hugo Prenat
 */
 
 #ifndef		LEMIPC_H_

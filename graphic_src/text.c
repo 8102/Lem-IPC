@@ -5,10 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  8 17:21:49 2015 Johan Paasche
-** Last update Sun Mar  8 20:32:32 2015 Johan Paasche
+** Last update Sun Mar  8 21:36:21 2015 Hugo Prenat
 */
 
-#include "lemiPC.h"
+#include "lemipc.h"
 
 void		text(t_gui *screen, char *message, int x, int y)
 {

@@ -5,10 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Sun Mar  8 20:51:51 2015 Johan Paasche
+** Last update Sun Mar  8 21:36:32 2015 Hugo Prenat
 */
 
-#include	"lemiPC.h"
+#include	"lemipc.h"
 
 void		lighting_circle(t_gui *screen, int i)
 {
