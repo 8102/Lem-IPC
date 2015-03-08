@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Sun Mar  8 21:36:44 2015 Hugo Prenat
+** Last update Sun Mar  8 21:41:28 2015 Hugo Prenat
 */
 
 #include	"lemipc.h"
@@ -96,6 +96,6 @@ int		main()
   screen.key = key;
   display_loop(&screen);
   SDL_Quit();
-  kill_remainings(&screen,screen.map);
+  kill_remainings(&screen, screen.map);
   return (0);
 }

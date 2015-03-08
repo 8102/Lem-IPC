@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  8 17:13:54 2015 Johan Paasche
-** Last update Sun Mar  8 21:36:38 2015 Hugo Prenat
+** Last update Sun Mar  8 21:41:01 2015 Hugo Prenat
 */
 
 #include	"lemipc.h"
@@ -34,9 +34,9 @@ t_bool		send_kill_mail(t_gui *screen, int nb)
   t_message	mail;
   int		msg_id;
 
-  msg_id = msgget(screen->key, SHM_R |SHM_W);
+  msg_id = msgget(screen->key, SHM_R | SHM_W);
   if (msg_id == -1)
-    msg_id = msgget(screen->key, IPC_CREAT | SHM_R |SHM_W);
+    msg_id = msgget(screen->key, IPC_CREAT | SHM_R | SHM_W);
   mail.mtype = nb + 1;
   mail.to_die = TRUE;
   mail.target_x = 0;
