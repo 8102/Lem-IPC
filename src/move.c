@@ -5,7 +5,7 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:51:39 2015 Hugo Prenat
-** Last update Sun Mar  8 16:49:01 2015 Hugo Prenat
+** Last update Sun Mar  8 18:52:59 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -17,7 +17,8 @@ void	update_player_pos(int x, int y, t_player *player, unsigned char *map)
 
   mem_x = player->x;
   mem_y = player->y;
-  if (map[POS(x, y)] != 0 || x >= SIDE_SIZE || y >= SIDE_SIZE)
+  if (map[POS(x, y)] != 0 || x >= SIDE_SIZE || y >= SIDE_SIZE
+      || x < 0 || y < 0)
     return ;
   player->x = x;
   player->y = y;
