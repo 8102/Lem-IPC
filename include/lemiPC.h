@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sun Mar  8 16:16:46 2015 Hugo Prenat
+** Last update Sun Mar  8 19:38:17 2015 Johan Paasche
 */
 
 #ifndef		LEMIPC_H_
@@ -20,6 +20,7 @@
 # include	<sys/shm.h>
 # include	<sys/ipc.h>
 # include	<sys/sem.h>
+# include	<sys/msg.h>
 # include	<pthread.h>
 
 # include	"player.h"
@@ -34,6 +35,8 @@
 /*
 ** I like it sometimes
 */
+
+# define	ERROR		(-1)
 
 typedef		unsigned char		t_bool;
 
@@ -67,6 +70,14 @@ typedef		unsigned char		t_bool;
 */
 # define	CELL_SIZE	(20)
 
+typedef	struct	s_message
+{
+  long		mtype;
+  t_bool	to_die;
+  int		target_x;
+  int		target_y;
+}		t_message;
+
 /*
 ** Change status of semaphore
 */
@@ -91,5 +102,11 @@ int		is_alive(t_player *, unsigned char *);
 */
 
 int		check_map(unsigned char *);
+
+/*
+** Check if last on the map
+*/
+
+t_bool		check_last(unsigned char *);
 
 #endif		/* !LEMIPC_H_ */

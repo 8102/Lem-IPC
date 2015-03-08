@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Sun Mar  8 15:29:18 2015 Hugo Prenat
+** Last update Sun Mar  8 19:02:54 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -73,6 +73,7 @@ t_bool		map_display_init(t_gui *screen)
   SDL_WM_SetCaption("COLLABORATE OR PERISH !", NULL);
   init_colour_array(screen);
   screen->font = TTF_OpenFont(".neuropol.ttf", 15);
+  bzero(screen->team_array, 255);
   return (TRUE);
 }
 
@@ -95,10 +96,10 @@ int		main(UNUSED int ac, UNUSED char **av)
     return (printf("A problem has occured while initing Graphic client.\n"));
   screen.map = shmat(shm_id, NULL, SHM_R | SHM_W);
   color_map(&screen, screen.map);
+  screen.key = key;
   pthread_create(&screen.event_thread, NULL, catch_event, &screen);
   while (screen.off == FALSE)
     {
-      /* lighting_circle(&screen, i); */
       shaded_grid(&screen, i % (CELL_SIZE * SIDE_SIZE - 100));
       color_map(&screen, screen.map);
       usleep(10000);
@@ -106,5 +107,6 @@ int		main(UNUSED int ac, UNUSED char **av)
     }
   pthread_join(screen.event_thread, NULL);
   SDL_Quit();
+  kill_remainings(&screen,screen.map);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Sun Mar  8 16:13:51 2015 Hugo Prenat
-** Last update Sun Mar  8 16:15:50 2015 Hugo Prenat
+** Last update Sun Mar  8 19:38:07 2015 Johan Paasche
 */
 
 #include "lemiPC.h"
@@ -22,4 +22,22 @@ int	check_map(unsigned char *map)
       i++;
     }
   return (-1);
+}
+
+t_bool	check_last(unsigned char *map)
+{
+  int	i;
+  int	cnt;
+
+  i = 0;
+  cnt = 0;
+  while (i < MAP_SIZE)
+    {
+      if (map[i] != 0)
+	++cnt;
+      if (cnt > 1)
+	return (FALSE);
+      ++i;
+    }
+  return (TRUE);
 }

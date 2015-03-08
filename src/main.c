@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Sun Mar  8 16:32:12 2015 Hugo Prenat
+** Last update Sun Mar  8 19:38:42 2015 Johan Paasche
 */
 
 #include "lemiPC.h"
@@ -52,12 +52,19 @@ int		init_player(t_player *player, unsigned char *map, int team)
 
 unsigned char	*init_ipc(t_player *player)
 {
-  unsigned char *map;
+  /* unsigned char *map; */
+  void		*map;
 
-  player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W);
-  player->sem_id = semget(player->k, 1, IPC_CREAT | SHM_R | SHM_W);
-  map = shmat(player->shm_id, NULL, SHM_R | SHM_W);
-  semctl(player->sem_id, 0, SETVAL, 1);
+  if ((player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W)) == ERROR)
+    printf("player-shm_id ERROR\n");
+  if ((player->sem_id = semget(player->k, 1, IPC_CREAT | SHM_R | SHM_W)) == ERROR)
+    printf("player-sem_id ERROR\n");
+  if (shmat(player->shm_id, NULL, SHM_R | SHM_W) == (void*)ERROR)
+    printf("SHMAT ERROR\n");
+  else
+    map = shmat(player->shm_id, NULL, SHM_R | SHM_W);
+  if (semctl(player->sem_id, 0, SETVAL, 1) == ERROR)
+    printf("SEMCTL error\n");
   memset(map, 0, MAP_SIZE);
   return (map);
 }
@@ -99,5 +106,10 @@ int			main(int ac, char **av)
   if (init_player(&player, map, atoi(av[1])) == -1)
     return (-1);
   move(&player, map);
+  if (check_last(map) == TRUE)
+    {
+      printf("I'm the last !\n");
+      delete_ipc(&player);
+    }
   return (0);
 }

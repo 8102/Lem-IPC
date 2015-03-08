@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Sun Mar  1 22:01:01 2015 Johan Paasche
-## Last update Sun Mar  8 16:17:05 2015 Hugo Prenat
+## Last update Sun Mar  8 17:28:27 2015 Johan Paasche
 ##
 
 CC		=	gcc
@@ -63,6 +63,8 @@ GRAPHIC_NAME	=	gui_lemipc
 GRAPHIC_SRC	=	graphic_client.c	\
 			drawing.c		\
 			init_colour_array.c	\
+			manage.c		\
+			text.c			\
 
 GRAPHIC_SRC_D	=	graphic_src
 
