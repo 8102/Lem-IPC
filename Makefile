@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Sun Mar  1 22:01:01 2015 Johan Paasche
-## Last update Sun Mar  8 20:52:37 2015 Hugo Prenat
+## Last update Sun Mar  8 21:28:23 2015 Hugo Prenat
 ##
 
 CC		=	gcc
@@ -41,6 +41,7 @@ SRC		=	main.c		\
 			check_map.c	\
 			enemy.c		\
 			signal.c	\
+			get_team.c	\
 			status_sem.c
 
 SRC_D		=	src
