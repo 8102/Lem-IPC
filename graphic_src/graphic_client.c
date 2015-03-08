@@ -5,35 +5,10 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Sun Mar  8 19:02:54 2015 Johan Paasche
+** Last update Sun Mar  8 20:54:15 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
-
-void		*catch_event(void *arg)
-{
-  t_gui		*screen;
-  SDL_Event	event;
-
-  screen = (t_gui *)arg;
-  while (screen->off == FALSE)
-    {
-      SDL_PollEvent(&event);
-      if (event.key.keysym.sym == SDLK_ESCAPE)
-	{
-	  screen->off = TRUE;
-	  pthread_exit(0);
-	}
-      if (event.type == SDL_MOUSEBUTTONDOWN)
-	{
-	  if (event.button.x < CELL_SIZE * SIDE_SIZE &&
-	      event.button.y < CELL_SIZE * SIDE_SIZE)
-	    screen->map[POS(event.button.x / CELL_SIZE,
-			    event.button.y / CELL_SIZE)] = 2;
-	}
-    }
-  return (NULL);
-}
 
 t_bool		check_end(char *map)
 {
@@ -72,18 +47,40 @@ t_bool		map_display_init(t_gui *screen)
   SDL_Flip(screen->screen);
   SDL_WM_SetCaption("COLLABORATE OR PERISH !", NULL);
   init_colour_array(screen);
-  screen->font = TTF_OpenFont(".neuropol.ttf", 15);
+  if (TTF_Init() == -1)
+    return (FALSE);
+  if (!(screen->font = TTF_OpenFont(".font.ttf", 20)))
+    return (FALSE);
   bzero(screen->team_array, 255);
   return (TRUE);
 }
 
-int		main(UNUSED int ac, UNUSED char **av)
+void		display_loop(t_gui *screen)
+{
+  int		i;
+
+  i = 0;
+  while (screen->off == FALSE)
+    {
+      SDL_PollEvent(&screen->event);
+      if (screen->event.key.keysym.sym == SDLK_ESCAPE)
+	{
+	  screen->off = TRUE;
+	  break;
+	}
+      shaded_grid(screen, i % (CELL_SIZE * SIDE_SIZE - 100));
+      color_map(screen, screen->map);
+      usleep(10000);
+      ++i;
+    }
+}
+
+int		main()
 {
   key_t		key;
   t_gui		screen;
   int		shm_id;
   char		cwd[1024];
-  int		i = 0;
 
   srand(time(NULL));
   if (getcwd(cwd, sizeof(cwd)) == NULL)
@@ -97,15 +94,7 @@ int		main(UNUSED int ac, UNUSED char **av)
   screen.map = shmat(shm_id, NULL, SHM_R | SHM_W);
   color_map(&screen, screen.map);
   screen.key = key;
-  pthread_create(&screen.event_thread, NULL, catch_event, &screen);
-  while (screen.off == FALSE)
-    {
-      shaded_grid(&screen, i % (CELL_SIZE * SIDE_SIZE - 100));
-      color_map(&screen, screen.map);
-      usleep(10000);
-      ++i;
-    }
-  pthread_join(screen.event_thread, NULL);
+  display_loop(&screen);
   SDL_Quit();
   kill_remainings(&screen,screen.map);
   return (0);

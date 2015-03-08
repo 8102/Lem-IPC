@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Sun Mar  8 21:01:41 2015 Hugo Prenat
+** Last update Sun Mar  8 21:27:51 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -22,14 +22,12 @@ void	delete_ipc(t_player *player)
     printf("Can't delete anything\n");
 }
 
-int		init_player(t_player *player, unsigned char *map, int team)
+int		init_player(t_player *player, unsigned char *map, char *str)
 {
   unsigned char	bool;
 
   bool = 0;
-  if (team > 0 && team < 256)
-    player->team = team;
-  else
+  if ((player->team = get_team(str)) < 1 && player->team > 256)
     {
       fprintf(stderr, "Error: team number must be between 1 and 255\n");
       return (-1);
@@ -53,7 +51,6 @@ int		init_player(t_player *player, unsigned char *map, int team)
 
 unsigned char	*init_ipc(t_player *player)
 {
-  /* unsigned char *map; */
   void		*map;
 
   if ((player->shm_id = shmget(player->k, MAP_SIZE, IPC_CREAT | SHM_R | SHM_W))
@@ -84,16 +81,11 @@ int	get_token(t_player *player)
   return (0);
 }
 
-int		main(int ac, char **av)
+int		main(UNUSED int ac, char **av)
 {
   t_player	player;
   unsigned char	*map;
 
-  if (ac < 2)
-    {
-      fprintf(stderr, "Usage: %s team_id\n", av[0]);
-      return (-1);
-    }
   signal(SIGINT, end_process);
   map = NULL;
   if (get_token(&player) == -1)
@@ -107,7 +99,7 @@ int		main(int ac, char **av)
     map = init_ipc(&player);
   else
     map = shmat(player.shm_id, NULL, SHM_R | SHM_W);
-  if (init_player(&player, map, atoi(av[1])) == -1)
+  if (init_player(&player, map, av[1]) == -1)
     return (-1);
   move(&player, map);
   return (0);

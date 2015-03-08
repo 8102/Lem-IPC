@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sun Mar  8 20:53:05 2015 Hugo Prenat
+** Last update Sun Mar  8 21:25:52 2015 Hugo Prenat
 */
 
 #ifndef		LEMIPC_H_
@@ -117,5 +117,11 @@ t_bool		check_last(unsigned char *);
 void		end_process(int);
 t_player	*player_struct(t_player *);
 void		delete_ipc(t_player *);
+
+/*
+** Get Team number
+*/
+
+int		get_team(char *);
 
 #endif		/* !LEMIPC_H_ */

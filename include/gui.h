@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Mar  3 20:34:55 2015 Johan Paasche
-** Last update Sun Mar  8 19:01:36 2015 Johan Paasche
+** Last update Sun Mar  8 20:44:36 2015 Johan Paasche
 */
 
 #ifndef		GUI_H_
@@ -23,7 +23,8 @@ typedef	struct	s_gui
   uint			colour_array[256];
   char			team_array[255];
   int			nb_team;
-  pthread_t		event_thread;
+  /* pthread_t		event_thread; */
+  SDL_Event		event;
   char			off;
   unsigned char		*map;
   TTF_Font		*font;
@@ -38,5 +39,6 @@ void		init_colour_array(t_gui *);
 void		fulfill_team_array(t_gui *, unsigned char *);
 void		text(t_gui *, char *, int, int);
 void		kill_remainings(t_gui *, unsigned char *);
+void		information(t_gui *, unsigned char *);
 
 #endif		/* !GUI_H_ */

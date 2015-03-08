@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 01:12:37 2015 Johan Paasche
-** Last update Sun Mar  8 17:42:02 2015 Johan Paasche
+** Last update Sun Mar  8 20:51:51 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -58,6 +58,22 @@ void		draw_cell(t_gui *screen, int x, int y, unsigned int color)
   SDL_FillRect(screen->screen, &screen->position, color);
 }
 
+void		blackout(t_gui *screen)
+{
+  SDL_Rect	pos;
+
+  pos.x = CELL_SIZE * SIDE_SIZE;
+  pos.y = 0;
+  pos.w = 200;
+  pos.h = CELL_SIZE * SIDE_SIZE + SIDE_SIZE;
+  SDL_FillRect(screen->screen, &pos, 0x00000000);
+  pos.x = 0;
+  pos.y = CELL_SIZE * SIDE_SIZE;
+  pos.w = 200 + CELL_SIZE * SIDE_SIZE;
+  pos.h = SIDE_SIZE;
+  SDL_FillRect(screen->screen, &pos, 0x00000000);
+}
+
 void		color_map(t_gui *screen, unsigned char *map)
 {
   int		x;
@@ -68,12 +84,11 @@ void		color_map(t_gui *screen, unsigned char *map)
     {
       x = -1;
       while (++x < SIDE_SIZE)
-	{
-	  draw_cell(screen, x, y, screen->colour_array[(int)(map[POS(x, y)])]);
-	}
+	draw_cell(screen, x, y, screen->colour_array[(int)(map[POS(x, y)])]);
       ++y;
     }
-  SDL_Flip(screen->screen);
   fulfill_team_array(screen, map);
-  text(screen, "BONJOUR", 5, 5);
+  blackout(screen);
+  information(screen, map);
+  SDL_Flip(screen->screen);
 }
