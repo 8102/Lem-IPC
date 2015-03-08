@@ -5,7 +5,7 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:51:39 2015 Hugo Prenat
-** Last update Sun Mar  8 13:12:57 2015 Hugo Prenat
+** Last update Sun Mar  8 13:34:23 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -78,13 +78,23 @@ int	find_enemy(t_player *player, unsigned char *map)
   return (enemy_pos);
 }
 
-void	go_to_enemy(t_player *player, unsigned char *map, int *x, int *y)
+void		go_to_enemy(t_player *player, unsigned char *map, int *x, int *y)
 {
-  int	enemy_pos;
+  unsigned int	enemy_pos;
 
   enemy_pos = find_enemy(player, map);
-  nearest_on_x(player, map, x, y);
-  nearest_on_y(player, map, x, y);
+  if (enemy_pos / MAP_SIZE > player->x &&
+      map[POS(player->x + 1, player->y)] == 0)
+    *x = player->x + 1;
+  else if (enemy_pos / MAP_SIZE < player->x &&
+      map[POS(player->x - 1, player->y)] == 0)
+    *x = player->x - 1;
+  if (enemy_pos % MAP_SIZE > player->y &&
+      map[POS(player->x, player->y + 1)] == 0)
+    *y = player->y + 1;
+  else if (enemy_pos % MAP_SIZE < player->y &&
+      map[POS(player->x, player->y - 1)] == 0)
+    *y = player->y - 1;
 }
 
 void	update_player_pos(int x, int y, t_player *player, unsigned char *map)
