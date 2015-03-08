@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sun Mar  8 19:38:17 2015 Johan Paasche
+** Last update Sun Mar  8 20:29:13 2015 Johan Paasche
 */
 
 #ifndef		LEMIPC_H_
@@ -108,5 +108,6 @@ int		check_map(unsigned char *);
 */
 
 t_bool		check_last(unsigned char *);
+
 
 #endif		/* !LEMIPC_H_ */
