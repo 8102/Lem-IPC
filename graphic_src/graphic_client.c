@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Sun Mar  8 15:19:26 2015 Johan Paasche
+** Last update Sun Mar  8 15:29:18 2015 Hugo Prenat
 */
 
 #include	"lemiPC.h"
@@ -26,8 +26,10 @@ void		*catch_event(void *arg)
 	}
       if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
-	  if (event.button.x < CELL_SIZE * SIDE_SIZE && event.button.y < CELL_SIZE * SIDE_SIZE)
-	    screen->map[POS(event.button.x / CELL_SIZE, event.button.y / CELL_SIZE)] = 2;
+	  if (event.button.x < CELL_SIZE * SIDE_SIZE &&
+	      event.button.y < CELL_SIZE * SIDE_SIZE)
+	    screen->map[POS(event.button.x / CELL_SIZE,
+			    event.button.y / CELL_SIZE)] = 2;
 	}
     }
   return (NULL);
@@ -59,7 +61,9 @@ t_bool		map_display_init(t_gui *screen)
   screen->off = FALSE;
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (FALSE);
-  screen->screen = SDL_SetVideoMode(SIDE_SIZE * CELL_SIZE + 200, SIDE_SIZE * CELL_SIZE + SIDE_SIZE, 32, SDL_HWSURFACE);
+  screen->screen = SDL_SetVideoMode(SIDE_SIZE * CELL_SIZE + 200,
+				    SIDE_SIZE * CELL_SIZE + SIDE_SIZE,
+				    32, SDL_HWSURFACE);
   screen->position.x = 0;
   screen->position.y = 0;
   screen->position.h = SIDE_SIZE * CELL_SIZE;

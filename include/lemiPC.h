@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sat Mar  7 17:20:54 2015 Johan Paasche
+** Last update Sun Mar  8 15:24:30 2015 Hugo Prenat
 */
 
 #ifndef		LEMIPC_H_
@@ -78,6 +78,7 @@ void		change_state_sem(t_player *, int);
 */
 
 void		move(t_player *, unsigned char *);
+void		go_to_enemy(t_player *, unsigned char *, int *, int *);
 
 /*
 ** Check if program is alive
