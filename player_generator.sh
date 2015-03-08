@@ -3,7 +3,6 @@
 nb_team=$1
 nb_player_by_team=$2
 
-echo $#
 if [ $# -ne 2 ]
    then
        echo "./player_generator [nb_team] [nb_player_by_team]"
