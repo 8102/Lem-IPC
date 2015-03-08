@@ -5,7 +5,7 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:51:39 2015 Hugo Prenat
-** Last update Sun Mar  8 15:16:46 2015 Hugo Prenat
+** Last update Sun Mar  8 16:49:01 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -30,6 +30,8 @@ void	move(t_player *player, unsigned char *map)
   int	x;
   int	y;
 
+  x = player->x;
+  y = player->y;
   while (is_alive(player, map) == 0)
     {
       change_state_sem(player, -1);

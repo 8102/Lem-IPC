@@ -5,7 +5,7 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Thu Mar  5 18:52:18 2015 Hugo Prenat
-** Last update Sat Mar  7 17:19:08 2015 Johan Paasche
+** Last update Sun Mar  8 17:23:35 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -58,10 +58,10 @@ int	check_dead(int *other)
   dead = 0;
   while (i < 9)
     {
-      j = i;
+      j = 0;
       while (j < 9)
 	{
-	  if (other[i] == other[j] && other[i] != 0)
+	  if (i != j && other[i] == other[j] && other[i] != 0)
 	    dead++;
 	  j++;
 	}
