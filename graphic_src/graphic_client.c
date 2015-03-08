@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Mon Mar  2 16:40:52 2015 Johan Paasche
-** Last update Fri Mar  6 16:05:01 2015 Johan Paasche
+** Last update Sun Mar  8 15:19:26 2015 Johan Paasche
 */
 
 #include	"lemiPC.h"
@@ -68,6 +68,7 @@ t_bool		map_display_init(t_gui *screen)
   SDL_Flip(screen->screen);
   SDL_WM_SetCaption("COLLABORATE OR PERISH !", NULL);
   init_colour_array(screen);
+  screen->font = TTF_OpenFont(".neuropol.ttf", 15);
   return (TRUE);
 }
 
@@ -84,7 +85,7 @@ int		main(UNUSED int ac, UNUSED char **av)
     return (-1);
   key = ftok(cwd, 0);
   shm_id = shmget(key, MAP_SIZE, SHM_R | SHM_W);
-  if (shm_id == FALSE)
+  if (shm_id == -1)
     return (printf("Please init the map before launching graphic client.\n"));
   if (map_display_init(&screen) == FALSE)
     return (printf("A problem has occured while initing Graphic client.\n"));

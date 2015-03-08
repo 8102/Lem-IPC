@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Tue Mar  3 20:34:55 2015 Johan Paasche
-** Last update Sat Mar  7 17:17:08 2015 Johan Paasche
+** Last update Sat Mar  7 18:18:26 2015 Johan Paasche
 */
 
 #ifndef		GUI_H_
@@ -23,6 +23,7 @@ typedef	struct	s_gui
   pthread_t		event_thread;
   char			off;
   unsigned char		*map;
+  TTF_Font		*font;
 }		t_gui;
 
 void		draw_cell(t_gui *, int, int, unsigned int);
