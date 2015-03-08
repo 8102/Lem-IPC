@@ -5,29 +5,29 @@
 ** Login   <prenat_h@epitech.eu>
 **
 ** Started on  Sun Mar  8 15:17:20 2015 Hugo Prenat
-** Last update Sun Mar  8 15:23:58 2015 Hugo Prenat
+** Last update Sun Mar  8 15:31:24 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
 
 void	try_move_up_down(t_player *player, unsigned char *map, int *x)
 {
-  if (map[POS(player->x - 1, player->y)] == 0)
-    *x = player->x - 1;
-  else if (map[POS(player->x + 1, player->y)] == 0)
-    *x = player->x + 1;
-  else
-    *x = player->x;
+  /* if (map[POS(player->x - 1, player->y)] == 0) */
+  /*   *x = player->x - 1; */
+  /* else if (map[POS(player->x + 1, player->y)] == 0) */
+  /*   *x = player->x + 1; */
+  /* else */
+  *x = player->x;
 }
 
 void	try_move_left_right(t_player *player, unsigned char *map, int *y)
 {
-  if (map[POS(player->x, player->y - 1)] == 0)
-    *y = player->y - 1;
-  else if (map[POS(player->x, player->y + 1)] == 0)
-    *y = player->y + 1;
-  else
-    *y = player->y;
+  /* if (map[POS(player->x, player->y - 1)] == 0) */
+  /*   *y = player->y - 1; */
+  /* else if (map[POS(player->x, player->y + 1)] == 0) */
+  /*   *y = player->y + 1; */
+  /* else */
+  *y = player->y;
 }
 
 int	find_enemy(t_player *player, unsigned char *map)

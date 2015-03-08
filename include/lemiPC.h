@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:07:05 2015 Johan Paasche
-** Last update Sun Mar  8 15:24:30 2015 Hugo Prenat
+** Last update Sun Mar  8 16:16:46 2015 Hugo Prenat
 */
 
 #ifndef		LEMIPC_H_
@@ -85,5 +85,11 @@ void		go_to_enemy(t_player *, unsigned char *, int *, int *);
 */
 
 int		is_alive(t_player *, unsigned char *);
+
+/*
+** Check if map is full
+*/
+
+int		check_map(unsigned char *);
 
 #endif		/* !LEMIPC_H_ */

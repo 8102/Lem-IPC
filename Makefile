@@ -5,7 +5,7 @@
 ## Login   <paasch_j@epitech.net>
 ## 
 ## Started on  Sun Mar  1 22:01:01 2015 Johan Paasche
-## Last update Sun Mar  8 15:24:52 2015 Hugo Prenat
+## Last update Sun Mar  8 16:17:05 2015 Hugo Prenat
 ##
 
 CC		=	gcc
@@ -38,6 +38,7 @@ NAME		=	lemipc
 SRC		=	main.c		\
 			is_alive.c	\
 			move.c		\
+			check_map.c	\
 			enemy.c		\
 			status_sem.c
 

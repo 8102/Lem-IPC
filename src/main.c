@@ -5,7 +5,7 @@
 ** Login   <paasch_j@epitech.net>
 **
 ** Started on  Sun Mar  1 22:03:00 2015 Johan Paasche
-** Last update Sat Mar  7 18:08:37 2015 Johan Paasche
+** Last update Sun Mar  8 16:12:54 2015 Hugo Prenat
 */
 
 #include "lemiPC.h"
@@ -33,9 +33,9 @@ int		init_player(t_player *player, unsigned char *map, int team)
       fprintf(stderr, "Error: team number must be between 1 and 255\n");
       return (-1);
     }
-  printf("team : [%d]\n", player->team);
-  while (bool == 0)
+  while (bool == 0 && check_map(map) == 0)
     {
+      change_state_sem(player, -1);
       srand(time(NULL));
       player->x = rand() % SIDE_SIZE;
       player->y = rand() % SIDE_SIZE;
@@ -44,6 +44,7 @@ int		init_player(t_player *player, unsigned char *map, int team)
 	  map[POS(player->x, player->y)] = player->team;
 	  bool = 1;
 	}
+      change_state_sem(player, 1);
     }
   return (0);
 }
